@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
   
-const CoffeeCard = ({coffee}) => {
+const CoffeeCard = ({coffee,coffees,setCoffees}) => {
     const {_id,name,quantity,supplier,taste,category,details,photo} = coffee;
 
     const handelDelete= _id =>{
@@ -31,6 +31,8 @@ const CoffeeCard = ({coffee}) => {
                                 text: "Your file has been deleted.",
                                 icon: "success"
                             });
+                            const remaining= coffees.filter(cof=> cof._id !== _id);
+                            setCoffees(remaining);
                         }
                     })
                 }
@@ -49,7 +51,9 @@ const CoffeeCard = ({coffee}) => {
                     <p>Supplier: {supplier}</p>
                 </div>
                 <div className="join join-vertical mr-4 mt-4">
-                    <button className="btn join-item mb-4">VIEW</button>
+                    <Link to={`viewDetails/${_id}`}>
+                        <button className="btn join-item mb-4 pr-8">VIEW</button>
+                    </Link>
                     <Link to={`updateCoffee/${_id}`}>
                         <button className="btn join-item mb-4 pr-8">EDIT</button>
                     </Link>
