@@ -17,8 +17,6 @@ const CoffeeCard = ({coffee,coffees,setCoffees}) => {
                 confirmButtonText: "Yes, delete it!"
                 }).then((result) => {
                 if (result.isConfirmed) {
-                    
-
                     fetch(`http://localhost:5000/coffee/${_id}`,{
                         method:'DELETE'
                     })
